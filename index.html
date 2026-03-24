@@ -12,6 +12,40 @@
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="static/css/index.css">
   <style>
+    /* Member horizontal layout: image left, text right on wider screens */
+    .member-horizontal {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    /* Ensure member-photo retains consistent sizing */
+    .member-horizontal .member-photo-wrap {
+      flex: 0 0 auto;
+      width: 96px;
+      height: 96px;
+    }
+
+    .member-horizontal .member-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* On narrow screens, stack vertically (Bulma columns will already stack) */
+    @media (max-width: 768px) {
+      .member-horizontal {
+        display: block;
+      }
+
+      .member-horizontal .member-photo-wrap {
+        width: 88px;
+        height: 88px;
+        margin-bottom: 0.5rem;
+      }
+    }
     /* Eye-friendly dark theme using #1E90FF as accent */
     body {
       color: #d9eaff !important;
@@ -274,10 +308,15 @@
         </article>
       </div>
       <div class="column is-12-mobile is-6-tablet">
-        <article class="member-card">
-          <h3>Member 2</h3>
-          <p class="member-role">Backend Developer</p>
-          <p>Handles database structure and API logic.</p>
+  <article class="member-card member-horizontal">
+          <figure class="member-photo-wrap">
+            <img src="static/images/member2.jpeg" alt="Member 2 profile photo" class="member-photo">
+          </figure>
+          <div>
+            <h3>James Marcus J. Mercado</h3>
+            <p class="member-role">Backend Developer</p>
+            <p>Handles database structure and API logic.</p>
+          </div>
         </article>
       </div>
       <div class="column is-12-mobile is-6-tablet">
