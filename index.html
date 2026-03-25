@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Barangay Certificate Request System</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    /* Eye-friendly dark theme using #1E90FF as accent */
+    body {
+      color: #d9eaff !important;
+      background:
+        radial-gradient(900px 420px at 10% -8%, rgba(30, 144, 255, 0.22), transparent 65%),
+        radial-gradient(760px 360px at 92% -8%, rgba(30, 144, 255, 0.16), transparent 68%),
+        linear-gradient(165deg, #050c18 0%, #07152a 55%, #0a1c33 100%) !important;
+    }
+
+    .noise-overlay,
+    .bg-grid {
+      opacity: 0.18 !important;
+      background-image:
+        linear-gradient(to right, rgba(30, 144, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 144, 255, 0.07) 1px, transparent 1px) !important;
+    }
+
+    .publication-title,
+    .section-title,
+    .brand-name,
+    .panel-kicker,
+    .member-role,
+    .label-chip {
+      color: #1E90FF !important;
+    }
+
+    .publication-subtitle,
+    .group-label,
+    .update-card h3,
+    .update-card p,
+    .member-card h3,
+    .member-card p,
+    .content-card p,
+    .footer-note p,
+    .author-block a {
+      color: #d9eaff !important;
+    }
+
+    .label-chip,
+    .action-btn,
+    .actor-chips span,
+    .state-pill,
+    .publication-links .button {
+      color: #dff0ff !important;
+      border-color: rgba(30, 144, 255, 0.36) !important;
+      background: rgba(30, 144, 255, 0.14) !important;
+    }
+
+    .label-chip {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: auto !important;
+      max-width: fit-content;
+      padding: 0.45rem 1.2rem !important;
+      border: 1px solid rgba(30, 144, 255, 0.35) !important;
+      border-radius: 999px !important;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      box-shadow: 0 4px 12px rgba(30, 144, 255, 0.1);
+      margin: 0 auto 0.8rem !important;
+    }
+
+    .hero-shell,
+    .content-card,
+    .panel-card,
+    .member-card,
+    .update-card,
+    .diagram-box,
+    .box {
+      border-color: rgba(30, 144, 255, 0.24) !important;
+      background: linear-gradient(160deg, #0b203a, #0a1a31) !important;
+      box-shadow: 0 12px 28px rgba(3, 10, 24, 0.5) !important;
+      border-radius: 18px !important;
+      overflow: hidden !important;
+      background-clip: padding-box;
+    }
+
+    .panel-card {
+      padding: 1.2rem 1.3rem !important;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .panel-card p:first-of-type {
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      color: #6eb3e0;
+    }
+
+    .panel-card h3 {
+      margin: 0 0 0.6rem 0 !important;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .panel-card p:last-child {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .update-card {
+      padding: 0.95rem 1.1rem !important;
+      border-radius: 14px !important;
+    }
+
+    .update-card h3 {
+      margin: 0 0 0.35rem 0 !important;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .update-card p {
+      margin: 0 0 0.45rem 0 !important;
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+
+    .state-pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.35rem 0.72rem;
+      border-radius: 999px;
+      margin-top: 0.3rem;
+    }
+
+    .timeline-wrap {
+      border-left-color: rgba(30, 144, 255, 0.5) !important;
+      max-width: 100%;
+      padding-left: 1.2rem;
+    }
+
+    .update-row {
+      position: relative;
+      margin-bottom: 0.8rem;
+      padding-left: 0;
+    }
+
+    .dot {
+      position: absolute;
+      left: -1.65rem;
+      top: 0.8rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 2px solid #0a1d35;
+    }
+
+    .dot,
+    .update-row.active .dot {
+      background: #1E90FF !important;
+      border-color: #0a1d35 !important;
+      box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.24) !important;
+    }
+
+    .group-label,
+    .group-label strong {
+      color: #ffffff !important;
+    }
+
+    html {
+      background: #050c18;
+    }
+
+    .section,
+    .teaser,
+    #overview,
+    #workflow,
+    #updates,
+    #team {
+      position: relative;
+      background: transparent !important;
+      background-image: none !important;
+    }
+
+    .teaser {
+      background:
+        linear-gradient(180deg, rgba(7, 21, 38, 0.18) 0%, rgba(7, 21, 38, 0.82) 100%) !important;
+    }
+
+    #overview {
+      background:
+        linear-gradient(180deg, rgba(8, 24, 44, 0.86) 0%, rgba(9, 27, 48, 0.92) 32%, rgba(9, 27, 48, 0.96) 100%) !important;
+    }
+
+    #workflow,
+    #updates,
+    #team {
+      background:
+        linear-gradient(180deg, rgba(9, 27, 48, 0.96) 0%, rgba(8, 23, 43, 0.96) 100%) !important;
+    }
+
+    .panel-card h3 {
+      color: #e8f2ff !important;
+      font-weight: 700 !important;
+    }
+
+    .actor-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .actor-chips span {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(30, 144, 255, 0.12) !important;
+      border: 1px solid rgba(30, 144, 255, 0.35) !important;
+      border-radius: 20px;
+      color: #7ec8ff !important;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .diagram-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      background: rgba(30, 144, 255, 0.05) !important;
+      min-height: 470px;
+      width: 100%;
+      margin: 0;
+    }
+
+    .bpmn-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    #workflow .columns {
+      align-items: center !important;
+    }
+
+    #workflow .column.is-4 {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    #workflow .column.is-8 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<section class="hero publication-header">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <p class="label-chip">Final Project Team Website</p>
+      <figure class="brand-logo-wrap" style="width: 124px; margin: 0.1rem auto 0.3rem;">
+        <img src="static/images/nexora.png" alt="Nexora group logo" class="brand-logo" style="width: 100%; height: auto; display: block;">
+      </figure>
+      <p class="brand-name" style="font-size: 1.08rem; font-weight: 900; letter-spacing: 0.18em;">NEXORA</p>
+      <h1 class="title is-1 publication-title">Barangay Certificate Request System</h1>
+      <h2 class="subtitle is-4 publication-subtitle">A cleaner digital process for faster certificate requests, approvals, and release updates.</h2>
+
+      <div class="publication-links">
+        <a class="button is-normal is-rounded action-btn" href="#workflow">
+          <span>Workflow</span>
+        </a>
+        <a class="button is-normal is-rounded action-btn" href="#updates">
+          <span>Weekly Progress</span>
+        </a>
+        <a class="button is-normal is-rounded action-btn" href="#team">
+          <span>Team Roles</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section teaser">
+  <div class="container is-max-desktop">
+    <div class="columns is-variable is-6 teaser-panels">
+      <div class="column">
+        <article class="panel-card">
+          <p class="panel-kicker">Project Focus</p>
+          <h3>Certificate Request Processing</h3>
+          <p>
+            Residents submit requests online, staff validates data, and the system tracks approvals and release status.
+          </p>
+        </article>
+      </div>
+      <div class="column">
+        <article class="panel-card">
+          <p class="panel-kicker">Current State</p>
+          <h3>Week 3: Work In Progress</h3>
+          <p>
+            Core site structure is ready, team roles are assigned, and workflow documentation is actively being refined.
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="overview">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Abstract</h2>
+    <div class="box content-card">
+      <p>
+        This project modernizes barangay certificate requests by replacing manual, paper-based processing with a structured web workflow.
+        Residents can submit requests digitally, while barangay staff can validate, approve, reject, and notify residents more efficiently.
+      </p>
+      <p>
+        The goal is to reduce processing delays, minimize repetitive visits to the barangay office, and improve service transparency for all stakeholders.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="workflow">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">System Workflow (BPMN)</h2>
+    <div class="box content-card">
+      <div class="columns is-variable is-5 is-vcentered">
+        <div class="column is-4">
+          <p>
+            Request flow: Resident submits a certificate request, system validates data, staff reviews submission, then approval or rejection is issued.
+            Approved requests move to certificate generation and release notification.
+          </p>
+          <div class="actor-chips">
+            <span>Resident</span>
+            <span>Barangay Staff</span>
+            <span>System/API</span>
+          </div>
+        </div>
+        <div class="column is-8">
+          <figure class="diagram-box">
+            <img src="static/images/bpmn.png" alt="Nexora BPMN workflow diagram" class="bpmn-image">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="updates">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Project Updates</h2>
+    <div class="timeline-wrap">
+      <article class="update-row done">
+        <div class="dot"></div>
+        <div class="update-card">
+          <h3>Week 1</h3>
+          <p>Selected the certificate request process and made the process diagram.</p>
+          <span class="state-pill done">Completed</span>
+        </div>
+      </article>
+
+      <article class="update-row done">
+        <div class="dot"></div>
+        <div class="update-card">
+          <h3>Week 2</h3>
+          <p>Created the website, divided tasks, and decided coding direction for implementation.</p>
+          <span class="state-pill done">Completed</span>
+        </div>
+      </article>
+
+      <article class="update-row active">
+        <div class="dot"></div>
+        <div class="update-card">
+          <h3>Week 3</h3>
+          <p>work-in-progress</p>
+          <span class="state-pill active">Current</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="team">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Team Profile</h2>
+    <p class="group-label"><strong>Group Name:</strong> Nexora</p>
+    <div class="columns is-multiline is-variable is-4">
+      <div class="column is-12-mobile is-6-tablet">
+        <article class="member-card member-featured">
+          <figure class="member-photo-wrap">
+            <img src="static/images/member1.jpg" alt="Member 1 profile photo" class="member-photo">
+          </figure>
+          <div>
+            <h3>Kian Robe P. Sinio</h3>
+            <p class="member-role">Project Manager</p>
+            <p>Leads the team and manages timeline and coordination.</p>
+          </div>
+        </article>
+      </div>
+      <div class="column is-12-mobile is-6-tablet">
+        <article class="member-card">
+          <h3>Member 2</h3>
+          <p class="member-role">Backend Developer</p>
+          <p>Handles database structure and API logic.</p>
+        </article>
+      </div>
+      <div class="column is-12-mobile is-6-tablet">
+        <article class="member-card">
+          <h3>Member 3</h3>
+          <p class="member-role">Frontend Developer</p>
+          <p>Builds interface, style, and user interaction flow.</p>
+        </article>
+      </div>
+      <div class="column is-12-mobile is-6-tablet">
+        <article class="member-card">
+          <h3>Member 4</h3>
+          <p class="member-role">Integration Specialist</p>
+          <p>Connects components and ensures smooth data exchange.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section footer-note">
+  <div class="container is-max-desktop">
+    <p>
+      Page foundation inspired by the Nerfies project website template, customized for our Final Project Team Website.
+    </p>
+  </div>
+</section>
+
+</body>
+</html>
