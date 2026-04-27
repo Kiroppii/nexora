@@ -77,6 +77,37 @@
       margin: 0 auto 0.8rem !important;
     }
 
+    .publication-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+      margin-top: 1.5rem;
+    }
+
+    .publication-links-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .publication-links-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem 0.75rem;
+      color: #8bd3ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 144, 255, 0.26);
+      background: rgba(30, 144, 255, 0.08);
+    }
+
     .hero-shell,
     .content-card,
     .panel-card,
@@ -276,7 +307,6 @@
 <section class="hero publication-header">
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
-      <p class="label-chip">Final Project Team Website</p>
       <figure class="brand-logo-wrap" style="width: 124px; margin: 0.1rem auto 0.3rem;">
         <img src="static/images/nexora.png" alt="Nexora group logo" class="brand-logo" style="width: 100%; height: auto; display: block;">
       </figure>
@@ -285,15 +315,29 @@
       <h2 class="subtitle is-4 publication-subtitle">A cleaner digital process for faster certificate requests, approvals, and release updates.</h2>
 
       <div class="publication-links">
-        <a class="button is-normal is-rounded action-btn" href="#workflow">
-          <span>Workflow</span>
-        </a>
-        <a class="button is-normal is-rounded action-btn" href="#updates">
-          <span>Weekly Progress</span>
-        </a>
-        <a class="button is-normal is-rounded action-btn" href="#team">
-          <span>Team Roles</span>
-        </a>
+        <div class="publication-links-group">
+          <a class="button is-normal is-rounded action-btn" href="#workflow">
+            <span>Workflow</span>
+          </a>
+          <a class="button is-normal is-rounded action-btn" href="#updates">
+            <span>Weekly Progress</span>
+          </a>
+          <a class="button is-normal is-rounded action-btn" href="#team">
+            <span>Team Roles</span>
+          </a>
+        </div>
+        <div class="publication-links-group secondary-links">
+          <span class="publication-links-label">Documentation</span>
+          <a class="button is-normal is-rounded action-btn" href="api-documentation.html">
+            <span>API Documentation</span>
+          </a>
+          <a class="button is-normal is-rounded action-btn" href="integration-guidelines.html">
+            <span>Integration Guidelines</span>
+          </a>
+          <a class="button is-normal is-rounded action-btn" href="system-architecture-documentation.html">
+            <span>System Architecture Documentation</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
