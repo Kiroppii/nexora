@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Barangay Certificate Request System</title>
+  <title>One Barangay System</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,6 +94,54 @@
       background: rgba(30, 144, 255, 0.14) !important;
     }
 
+    .label-chip {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: auto !important;
+      max-width: fit-content;
+      padding: 0.45rem 1.2rem !important;
+      border: 1px solid rgba(30, 144, 255, 0.35) !important;
+      border-radius: 999px !important;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      box-shadow: 0 4px 12px rgba(30, 144, 255, 0.1);
+      margin: 0 auto 0.8rem !important;
+    }
+
+    .publication-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+      margin-top: 1.5rem;
+    }
+
+    .publication-links-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .publication-links-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem 0.75rem;
+      color: #8bd3ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 144, 255, 0.26);
+      background: rgba(30, 144, 255, 0.08);
+    }
+
     .hero-shell,
     .content-card,
     .panel-card,
@@ -104,10 +152,83 @@
       border-color: rgba(30, 144, 255, 0.24) !important;
       background: linear-gradient(160deg, #0b203a, #0a1a31) !important;
       box-shadow: 0 12px 28px rgba(3, 10, 24, 0.5) !important;
+      border-radius: 18px !important;
+      overflow: hidden !important;
+      background-clip: padding-box;
+    }
+
+    .panel-card {
+      padding: 1.2rem 1.3rem !important;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .panel-card p:first-of-type {
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      color: #6eb3e0;
+    }
+
+    .panel-card h3 {
+      margin: 0 0 0.6rem 0 !important;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .panel-card p:last-child {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .update-card {
+      padding: 0.95rem 1.1rem !important;
+      border-radius: 14px !important;
+    }
+
+    .update-card h3 {
+      margin: 0 0 0.35rem 0 !important;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .update-card p {
+      margin: 0 0 0.45rem 0 !important;
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+
+    .state-pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.35rem 0.72rem;
+      border-radius: 999px;
+      margin-top: 0.3rem;
     }
 
     .timeline-wrap {
       border-left-color: rgba(30, 144, 255, 0.5) !important;
+      max-width: 100%;
+      padding-left: 1.2rem;
+    }
+
+    .update-row {
+      position: relative;
+      margin-bottom: 0.8rem;
+      padding-left: 0;
+    }
+
+    .dot {
+      position: absolute;
+      left: -1.65rem;
+      top: 0.8rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 2px solid #0a1d35;
     }
 
     .dot,
@@ -158,74 +279,102 @@
       color: #e8f2ff !important;
       font-weight: 700 !important;
     }
+
+    .actor-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .actor-chips span {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(30, 144, 255, 0.12) !important;
+      border: 1px solid rgba(30, 144, 255, 0.35) !important;
+      border-radius: 20px;
+      color: #7ec8ff !important;
+      font-size: 0.9rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .diagram-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      background: rgba(30, 144, 255, 0.05) !important;
+      min-height: 470px;
+      width: 100%;
+      margin: 0;
+    }
+
+    .bpmn-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    #workflow .columns {
+      align-items: center !important;
+    }
+
+    #workflow .column.is-4 {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    #workflow .column.is-8 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   </style>
 </head>
 
 <body>
+  <div id="navbar-placeholder"></div>
 <div class="noise-overlay" aria-hidden="true"></div>
 
 <section class="hero publication-header">
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
-      <p class="label-chip">Final Project Team Website</p>
       <figure class="brand-logo-wrap" style="width: 124px; margin: 0.1rem auto 0.3rem;">
         <img src="static/images/nexora.png" alt="Nexora group logo" class="brand-logo" style="width: 100%; height: auto; display: block;">
       </figure>
       <p class="brand-name" style="font-size: 1.08rem; font-weight: 900; letter-spacing: 0.18em;">NEXORA</p>
-      <h1 class="title is-1 publication-title">Barangay Certificate Request System</h1>
-      <h2 class="subtitle is-4 publication-subtitle">A cleaner digital process for faster certificate requests, approvals, and release updates.</h2>
-
+      <h1 class="title is-1 publication-title">One Barangay System</h1>
+      <h2 class="subtitle is-4 publication-subtitle"> A web-based barangay management system for handling resident records, certificate requests, and administrative operations efficiently.
+</h2>
       <div class="publication-links">
-        <a class="button is-normal is-rounded action-btn" href="#workflow">
-          <span>Workflow</span>
-        </a>
-        <a class="button is-normal is-rounded action-btn" href="#updates">
-          <span>Weekly Progress</span>
-        </a>
-        <a class="button is-normal is-rounded action-btn" href="#team">
-          <span>Team Roles</span>
+        <a href="https://github.com/Kiroppii/one-barangay" target="_blank" class="button" style="background: rgba(30, 144, 255, 0.14); border: 1px solid rgba(30, 144, 255, 0.36); color: #dff0ff; border-radius: 999px; padding: 0.6rem 1.2rem; text-decoration: none; font-weight: 600;">
+          <span><i class="fab fa-github" style="margin-right: 0.5rem;"></i>View Project   on GitHub</span>
         </a>
       </div>
-    </div>
-  </div>
+     </div>
+     </div>
 </section>
 
-<section class="section teaser">
-  <div class="container is-max-desktop">
-    <div class="columns is-variable is-6 teaser-panels">
-      <div class="column">
-        <article class="panel-card">
-          <p class="panel-kicker">Project Focus</p>
-          <h3>Certificate Request Processing</h3>
-          <p>
-            Residents submit requests online, staff validates data, and the system tracks approvals and release status.
-          </p>
-        </article>
-      </div>
-      <div class="column">
-        <article class="panel-card">
-          <p class="panel-kicker">Current State</p>
-          <h3>Week 3: Work In Progress</h3>
-          <p>
-            Core site structure is ready, team roles are assigned, and workflow documentation is actively being refined.
-          </p>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <section class="section" id="overview">
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-title">Abstract</h2>
     <div class="box content-card">
       <p>
-        This project modernizes barangay certificate requests by replacing manual, paper-based processing with a structured web workflow.
-        Residents can submit requests digitally, while barangay staff can validate, approve, reject, and notify residents more efficiently.
-      </p>
-      <p>
-        The goal is to reduce processing delays, minimize repetitive visits to the barangay office, and improve service transparency for all stakeholders.
-      </p>
+              This project is a web-based Barangay Management System designed to streamline daily barangay operations.
+  It centralizes resident information, manages certificate requests, and supports administrative tasks such as approvals and record keeping.
+
+  The system allows residents to submit requests digitally, while barangay staff can efficiently process, track, and manage these requests through an organized interface.
+  Additional features include incident reporting, community event management, and secure user authentication.
+
+  The goal is to improve efficiency, reduce manual workload, and provide a more reliable and transparent service for both barangay officials and residents.
+</p>
+      
+     
     </div>
   </div>
 </section>
@@ -237,8 +386,8 @@
       <div class="columns is-variable is-5 is-vcentered">
         <div class="column is-4">
           <p>
-            Request flow: Resident submits a certificate request, system validates data, staff reviews submission, then approval or rejection is issued.
-            Approved requests move to certificate generation and release notification.
+            This BPMN diagram shows the Barangay Document Request process in the One Barangay System with two actors: Resident and Barangay Admin.
+The process starts when the resident submits a request and uploads requirements. The barangay admin verifies the request, checks completeness, and decides to approve or reject. If approved, the admin prepares the document and notifies the resident for release. The process ends when the resident receives the document.
           </p>
           <div class="actor-chips">
             <span>Resident</span>
@@ -247,8 +396,64 @@
           </div>
         </div>
         <div class="column is-8">
-          <figure class="diagram-box" style="min-height: 470px;">
-            <img src="static/images/bpmn.png" alt="Nexora BPMN workflow diagram" class="bpmn-image" style="width: 100%; height: 100%; object-fit: contain;">
+          <figure class="diagram-box">
+            <img src="static/images/bpmn2.png" alt="Nexora BPMN workflow diagram" class="bpmn-image">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="workflow">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">ERD Diagram</h2>
+    <div class="box content-card">
+      <div class="columns is-variable is-5 is-vcentered">
+        <div class="column is-4">
+         <p>
+The ERD shows how the system manages users, residents, and certificate requests.
+  It connects requests to certificates, reports, and events, ensuring organized data flow and efficient processing.
+</p>
+
+<div class="actor-chips">
+  <span>Users</span>
+  <span>Residents</span>
+  <span>Requests</span>
+  <span>Certificates</span>
+  <span>Reports</span>
+</div>
+        </div>
+        <div class="column is-8">
+          <figure class="diagram-box">
+            <img src="static/images/erd.png" alt="Nexora ERD diagram" class="bpmn-image">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="workflow">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 section-title">Use Case Diagram</h2>
+    <div class="box content-card">
+      <div class="columns is-variable is-5 is-vcentered">
+        <div class="column is-4">
+          <p>
+            This diagram shows a Barangay System with two users: Admin and Resident.
+
+The Admin manages records, certificates, incidents, and events, while the Resident logs in, views their profile, requests services, reports incidents, and checks events.
+          </p>
+          <div class="actor-chips">
+            <span>Admin</span>
+            <span>Resident</span>
+        
+          </div>
+        </div>
+        <div class="column is-8">
+          <figure class="diagram-box">
+            <img src="static/images/usecaseD.png" alt="Nexora Use Case diagram" class="bpmn-image">
           </figure>
         </div>
       </div>
@@ -260,11 +465,15 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 section-title">Project Updates</h2>
     <div class="timeline-wrap">
+
       <article class="update-row done">
         <div class="dot"></div>
         <div class="update-card">
           <h3>Week 1</h3>
-          <p>Selected the certificate request process and made the process diagram.</p>
+          <p>
+            Identified the system scope including certificate requests, incident blotter reports, community events, and resident records management.
+            Designed the process flow diagrams for all modules and planned the database structure for residents, requests, incidents, and events.
+          </p>
           <span class="state-pill done">Completed</span>
         </div>
       </article>
@@ -273,7 +482,50 @@
         <div class="dot"></div>
         <div class="update-card">
           <h3>Week 2</h3>
-          <p>Created the website, divided tasks, and decided coding direction for implementation.</p>
+          <p>
+            Developed the initial website structure and user interface.
+            Divided team tasks for certificate requests, incident blotter, community events, and resident management modules.
+            Started core modules including login system, resident records management, and basic dashboard pages.
+          </p>
+          <span class="state-pill done">Completed</span>
+        </div>
+      </article>
+
+      <article class="update-row done">
+        <div class="dot"></div>
+        <div class="update-card">
+          <h3>Week 3</h3>
+          <p>
+            Continued development of core features: certificate requests, resident records management, incident blotter system, and community events module.
+            Integrated frontend with backend for all modules and performed initial testing and debugging.
+          </p>
+          <span class="state-pill done">Completed</span>
+        </div>
+      </article>
+
+      <article class="update-row done">
+        <div class="dot"></div>
+        <div class="update-card">
+          <h3>Week 4</h3>
+          <p>
+            Completed certificate request module with submission, approval, and rejection workflows.
+            Implemented incident blotter report system with CRUD operations for incident tracking.
+            Enhanced database operations and improved form validation and error handling across all modules.
+          </p>
+          <span class="state-pill done">Completed</span>
+        </div>
+      </article>
+
+      <article class="update-row done">
+        <div class="dot"></div>
+        <div class="update-card">
+          <h3>Week 5</h3>
+          <p>
+            Added search and filtering features for resident records and certificate requests.
+            Implemented community events management with creation, editing, and deletion capabilities.
+            Improved resident profiling and administrative management features.
+            Conducted comprehensive system testing and fixed bugs to improve performance.
+          </p>
           <span class="state-pill done">Completed</span>
         </div>
       </article>
@@ -281,11 +533,15 @@
       <article class="update-row active">
         <div class="dot"></div>
         <div class="update-card">
-          <h3>Week 3</h3>
-          <p>work-in-progress</p>
+          <h3>Week 6</h3>
+          <p>
+            Finalized all system modules: certificate requests, incident blotter reports, community events, and resident records management.
+            Performed final testing and debugging across all features, and prepared the system for presentation and documentation.
+          </p>
           <span class="state-pill active">Current</span>
         </div>
       </article>
+
     </div>
   </div>
 </section>
@@ -298,16 +554,25 @@
       <div class="column is-12-mobile is-6-tablet">
         <article class="member-card member-featured">
           <figure class="member-photo-wrap">
-            <img src="static/images/member1.jpg" alt="Member 1 profile photo" class="member-photo">
+            <img src="static/images/member1.png" alt="Member 1 profile photo" class="member-photo">
           </figure>
           <div>
-            <h3>Kian Robe P. Sinio</h3>
+            <h3>Kian Robe Sinio</h3>
             <p class="member-role">Project Manager</p>
             <p>Leads the team and manages timeline and coordination.</p>
           </div>
         </article>
       </div>
       <div class="column is-12-mobile is-6-tablet">
+        <article class="member-card member-featured">
+          <figure class="member-photo-wrap">
+            <img src="static/images/1bcd0225-2c98-46c9-99a8-713fd25d624d.jpg" alt="Igor Toledano profile photo" class="member-photo">
+          </figure>
+          <div>
+            <h3>Igor Toledano</h3>
+            <p class="member-role">Backend Developer</p>
+            <p>Handles database structure and API logic.</p>
+          </div>
   <article class="member-card member-horizontal">
           <figure class="member-photo-wrap">
             <img src="static/images/member2.jpeg" alt="Member 2 profile photo" class="member-photo">
@@ -320,17 +585,39 @@
         </article>
       </div>
       <div class="column is-12-mobile is-6-tablet">
-        <article class="member-card">
-          <h3>Member 3</h3>
-          <p class="member-role">Frontend Developer</p>
-          <p>Builds interface, style, and user interaction flow.</p>
+        <article class="member-card member-featured">
+          <figure class="member-photo-wrap">
+            <img src="static/images/jameskinuha.png" alt="James Marcus Mercado profile photo" class="member-photo">
+          </figure>
+          <div>
+            <h3>James Marcus Mercado</h3>
+            <p class="member-role">Frontend Developer</p>
+            <p>Builds interface, style, and user interaction flow.</p>
+          </div>
         </article>
       </div>
       <div class="column is-12-mobile is-6-tablet">
-        <article class="member-card">
-          <h3>Member 4</h3>
-          <p class="member-role">Integration Specialist</p>
-          <p>Connects components and ensures smooth data exchange.</p>
+        <article class="member-card member-featured">
+          <figure class="member-photo-wrap">
+            <img src="static/images/jehd.jpg" alt="Daniel Jehd Franco profile photo" class="member-photo">
+          </figure>
+          <div>
+            <h3>Daniel Jehd Franco</h3>
+            <p class="member-role">Integration Specialist</p>
+            <p>Connects components and ensures smooth data exchange.</p>
+          </div>
+        </article>
+      </div>
+      <div class="column is-12-mobile is-6-tablet">
+        <article class="member-card member-featured">
+          <figure class="member-photo-wrap">
+            <img src="static/images/Mariejo.png" alt="Mariejo Garcia profile photo" class="member-photo">
+          </figure>
+          <div>
+            <h3>Mariejo Garcia</h3>
+            <p class="member-role">Documentation Lead</p>
+            <p>Maintains project records, reports, and supporting documentation.</p>
+          </div>
         </article>
       </div>
     </div>
@@ -344,6 +631,32 @@
     </p>
   </div>
 </section>
-
+<script>
+    // Fetch the navigation bar and insert it into the placeholder
+    fetch('nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        
+        // Initialize the burger menu AFTER the nav bar has loaded
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        $navbarBurgers.forEach( el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+            
+            if ($target.classList.contains('is-active')) {
+              $target.style.background = '#0a1c33';
+            } else {
+              $target.style.background = 'transparent';
+            }
+          });
+        });
+      })
+      .catch(error => console.error('Error loading navigation:', error));
+  </script>
+</body>
 </body>
 </html>

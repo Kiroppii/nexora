@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignment - Nexora One Barangay System</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    /* Eye-friendly dark theme using #1E90FF as accent */
+    body {
+      color: #d9eaff !important;
+      background:
+        radial-gradient(900px 420px at 10% -8%, rgba(30, 144, 255, 0.22), transparent 65%),
+        radial-gradient(760px 360px at 92% -8%, rgba(30, 144, 255, 0.16), transparent 68%),
+        linear-gradient(165deg, #050c18 0%, #07152a 55%, #0a1c33 100%) !important;
+    }
+
+    .noise-overlay,
+    .bg-grid {
+      opacity: 0.18 !important;
+      background-image:
+        linear-gradient(to right, rgba(30, 144, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 144, 255, 0.07) 1px, transparent 1px) !important;
+    }
+
+    .publication-title,
+    .section-title,
+    .brand-name,
+    .panel-kicker,
+    .member-role,
+    .label-chip {
+      color: #1E90FF !important;
+    }
+
+    .publication-subtitle,
+    .group-label,
+    .update-card h3,
+    .update-card p,
+    .member-card h3,
+    .member-card p,
+    .content-card p,
+    .footer-note p,
+    .author-block a {
+      color: #d9eaff !important;
+    }
+
+    .label-chip,
+    .action-btn,
+    .actor-chips span,
+    .state-pill,
+    .publication-links .button {
+      color: #dff0ff !important;
+      border-color: rgba(30, 144, 255, 0.36) !important;
+      background: rgba(30, 144, 255, 0.14) !important;
+    }
+
+    .label-chip {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: auto !important;
+      max-width: fit-content;
+      padding: 0.45rem 1.2rem !important;
+      border: 1px solid rgba(30, 144, 255, 0.35) !important;
+      border-radius: 999px !important;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      box-shadow: 0 4px 12px rgba(30, 144, 255, 0.1);
+      margin: 0 auto 0.8rem !important;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #050c18 !important;
+    }
+
+    .brand-logo-wrap {
+      margin: 0 auto 0.3rem;
+    }
+
+    .publication-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .publication-links-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .publication-links-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem 0.75rem;
+      color: #8bd3ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 144, 255, 0.26);
+      background: rgba(30, 144, 255, 0.08);
+    }
+
+    .hero-shell,
+    .content-card,
+    .panel-card,
+    .member-card,
+    .update-card,
+    .diagram-box,
+    .box {
+      border-color: rgba(30, 144, 255, 0.24) !important;
+      background: linear-gradient(160deg, #0b203a, #0a1a31) !important;
+      box-shadow: 0 12px 28px rgba(3, 10, 24, 0.5) !important;
+      border-radius: 18px !important;
+      overflow: hidden !important;
+      background-clip: padding-box;
+    }
+
+    .panel-card {
+      padding: 1.2rem 1.3rem !important;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .content-card {
+      padding: 1.8rem 2rem !important;
+    }
+
+    .content-card .title.is-5 {
+      color: #9ed4ff !important;
+      font-weight: 700 !important;
+    }
+
+    .member-card {
+      padding: 1rem;
+    }
+
+    .member-featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .member-photo-wrap {
+      margin: 0;
+    }
+
+    .member-photo {
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 2px solid #3b84b9;
+    }
+
+    .member-card h3 {
+      margin: 0;
+      color: #e9f9ff;
+      font-size: 1rem;
+    }
+
+    .member-role {
+      margin: 0.32rem 0 0.36rem;
+      color: #68dbff;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .member-card p {
+      margin: 0;
+      color: #a2c6de;
+      font-size: 0.89rem;
+    }
+
+    .footer-note {
+      padding-top: 1.25rem;
+      padding-bottom: 2.4rem;
+    }
+
+    .footer-note p {
+      margin: 0;
+      text-align: center;
+      color: #7da4c0;
+      font-size: 0.89rem;
+    }
+
+    .publication-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .publication-links .button {
+      margin: 0;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .publication-links .button:hover {
+      background: rgba(30, 144, 255, 0.18) !important;
+      border-color: rgba(30, 144, 255, 0.35) !important;
+      transform: none;
+      box-shadow: 0 4px 12px rgba(30, 144, 255, 0.12);
+    }
+
+    .publication-links .button span {
+      display: block;
+      line-height: 1.2;
+    }
+
+    .hero.publication-header {
+      padding: 3rem 1.5rem 4rem;
+      text-align: center;
+    }
+
+    .hero.publication-header .hero-body {
+      padding: 0;
+    }
+
+    .publication-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0.5rem 0 0.3rem;
+      line-height: 1.1;
+    }
+
+    .publication-subtitle {
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin: 0 0 1.5rem;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .brand-logo-wrap {
+      display: inline-block;
+    }
+
+    .brand-logo {
+      width: 100%;
+      height: auto;
+      max-width: 120px;
+    }
+
+    .brand-name {
+      font-size: 1.08rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      margin: 0.1rem 0 0.3rem;
+    }
+
+    .section-title {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .container.is-max-desktop {
+      max-width: 800px;
+    }
+
+    .video-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(30, 144, 255, 0.05);
+      border-radius: 16px;
+      overflow: hidden;
+      padding: 1rem;
+      width: 100%;
+    }
+
+    .video-container video {
+      max-width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(30, 144, 255, 0.15);
+    }
+
+    @media (max-width: 768px) {
+      .publication-title {
+        font-size: 2rem;
+      }
+
+      .publication-subtitle {
+        font-size: 1rem;
+      }
+
+      .publication-links {
+        gap: 0.5rem;
+      }
+
+      .publication-links .button {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="navbar-placeholder"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<section class="hero publication-header">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <figure class="brand-logo-wrap" style="width: 124px; margin: 0.1rem auto 0.3rem;">
+        <img src="static/images/nexora.png" alt="Nexora group logo" class="brand-logo" style="width: 100%; height: auto; display: block;">
+      </figure>
+      <p class="brand-name" style="font-size: 1.08rem; font-weight: 900; letter-spacing: 0.18em;">NEXORA</p>
+      <h1 class="title is-1 publication-title">Assignment Presentation</h1>
+      <h2 class="subtitle is-4 publication-subtitle">How modern Systems Work Together</h2>
+     
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content-card">
+      <h2 class="title is-3 section-title">Final Assignment</h2>
+      <figure class="video-container">
+        <video 
+          width="100%" 
+          height="auto" 
+          controls 
+          controlsList="nodownload">
+          <source src="static/videos/Assignment Nexora.mp4" type="video/mp4">
+          Your browser does not support the video tag. Please use a modern browser to view this video.
+        </video>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section footer-note">
+  <div class="container is-max-desktop">
+    <p>
+      Page foundation inspired by the Nerfies project website template, customized for our Final Project Team Website.
+    </p>
+  </div>
+</section>
+<script>
+    // Fetch the navigation bar and insert it into the placeholder
+    fetch('nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        
+        // Initialize the burger menu AFTER the nav bar has loaded
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        $navbarBurgers.forEach( el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+            
+            if ($target.classList.contains('is-active')) {
+              $target.style.background = '#0a1c33';
+            } else {
+              $target.style.background = 'transparent';
+            }
+          });
+        });
+      })
+      .catch(error => console.error('Error loading navigation:', error));
+  </script>
+</body>
+</html>

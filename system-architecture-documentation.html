@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>System Architecture Documentation - Barangay Certificate Request System</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    /* Eye-friendly dark theme using #1E90FF as accent */
+    body {
+      color: #d9eaff !important;
+      background:
+        radial-gradient(900px 420px at 10% -8%, rgba(30, 144, 255, 0.22), transparent 65%),
+        radial-gradient(760px 360px at 92% -8%, rgba(30, 144, 255, 0.16), transparent 68%),
+        linear-gradient(165deg, #050c18 0%, #07152a 55%, #0a1c33 100%) !important;
+    }
+    body {
+  color: #f1f7ff !important;
+}
+
+/* Headings (make them pop more) */
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.publication-title {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(30, 144, 255, 0.25);
+}
+
+/* Main paragraph text */
+p,
+.content-card p,
+.member-card p,
+.update-card p {
+  color: #eaf3ff !important;
+  line-height: 1.8;
+}
+
+/* Muted secondary text (make slightly brighter than before) */
+.publication-subtitle,
+.footer-note p,
+.group-label {
+  color: #cfe6ff !important;
+}
+
+/* Strong text */
+strong {
+  color: #ffffff !important;
+}
+
+/* Lists */
+ul, ol, li {
+  color: #e6f1ff !important;
+}
+
+/* Links */
+a {
+  color: #4db3ff !important;
+}
+
+a:hover {
+  color: #82ccff !important;
+  text-shadow: 0 0 8px rgba(30, 144, 255, 0.4);
+}
+
+/* Cards text clarity boost */
+.content-card,
+.panel-card,
+.member-card,
+.update-card {
+  color: #eef6ff !important;
+}
+
+/* Optional: improve readability of labels/chips */
+.label-chip,
+.state-pill {
+  color: #ffffff !important;
+}
+
+    .noise-overlay,
+    .bg-grid {
+      opacity: 0.18 !important;
+      background-image:
+        linear-gradient(to right, rgba(30, 144, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 144, 255, 0.07) 1px, transparent 1px) !important;
+    }
+
+    .publication-title,
+    .section-title,
+    .brand-name,
+    .panel-kicker,
+    .member-role,
+    .label-chip {
+      color: #1E90FF !important;
+    }
+
+    .publication-subtitle,
+    .group-label,
+    .update-card h3,
+    .update-card p,
+    .member-card h3,
+    .member-card p,
+    .content-card p,
+    .footer-note p,
+    .author-block a {
+      color: #d9eaff !important;
+    }
+
+    .label-chip,
+    .action-btn,
+    .actor-chips span,
+    .state-pill,
+    .publication-links .button {
+      color: #dff0ff !important;
+      border-color: rgba(30, 144, 255, 0.36) !important;
+      background: rgba(30, 144, 255, 0.14) !important;
+    }
+
+    .label-chip {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: auto !important;
+      max-width: fit-content;
+      padding: 0.45rem 1.2rem !important;
+      border: 1px solid rgba(30, 144, 255, 0.35) !important;
+      border-radius: 999px !important;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      box-shadow: 0 4px 12px rgba(30, 144, 255, 0.1);
+      margin: 0 auto 0.8rem !important;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #050c18 !important;
+    }
+
+    .brand-logo-wrap {
+      margin: 0 auto 0.3rem;
+    }
+
+    .publication-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .publication-links-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .publication-links-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem 0.75rem;
+      color: #8bd3ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 144, 255, 0.26);
+      background: rgba(30, 144, 255, 0.08);
+    }
+
+    .hero-shell,
+    .content-card,
+    .panel-card,
+    .member-card,
+    .update-card,
+    .diagram-box,
+    .box {
+      border-color: rgba(30, 144, 255, 0.24) !important;
+      background: linear-gradient(160deg, #0b203a, #0a1a31) !important;
+      box-shadow: 0 12px 28px rgba(3, 10, 24, 0.5) !important;
+      border-radius: 18px !important;
+      overflow: hidden !important;
+      background-clip: padding-box;
+    }
+
+    .panel-card {
+      padding: 1.2rem 1.3rem !important;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .content-card {
+      padding: 1.8rem 2rem !important;
+    }
+
+    .member-card {
+      padding: 1rem;
+    }
+
+    .member-featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .member-photo-wrap {
+      margin: 0;
+    }
+
+    .member-photo {
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 2px solid #3b84b9;
+    }
+
+    .member-card h3 {
+      margin: 0;
+      color: #e9f9ff;
+      font-size: 1rem;
+    }
+
+    .member-role {
+      margin: 0.32rem 0 0.36rem;
+      color: #68dbff;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .member-card p {
+      margin: 0;
+      color: #a2c6de;
+      font-size: 0.89rem;
+    }
+
+    /* SECTION SPACING IMPROVEMENT */
+.section {
+  padding: 4rem 1.5rem !important;
+}
+
+/* Card spacing */
+.content-card {
+  padding: 2.5rem 2.2rem !important;
+}
+
+/* Headings spacing */
+.title.is-4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+/* Paragraph spacing */
+p {
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+}
+
+/* Lists spacing */
+ul, ol {
+  margin-top: 0.5rem;
+  margin-bottom: 1.8rem;
+  padding-left: 1.6rem;
+}
+
+li {
+  margin-bottom: 0.6rem;
+  line-height: 1.7;
+}
+
+/* Diagram spacing */
+.diagram-box {
+  margin: 1.5rem 0 2.5rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: rgba(30, 144, 255, 0.08);
+  border: 1px solid rgba(30, 144, 255, 0.25);
+}
+
+/* Preformatted diagram readability */
+pre {
+  margin: 0;
+  padding: 1rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+
+/* Better separation between sections */
+h3 + ul,
+h3 + ol,
+h3 + p,
+h3 + .diagram-box {
+  margin-top: 0.8rem;
+}
+
+/* Footer spacing */
+.footer-note {
+  padding: 3rem 1.5rem !important;
+  margin-top: 2rem;
+}
+
+    .footer-note {
+      padding-top: 1.25rem;
+      padding-bottom: 2.4rem;
+    }
+
+    .footer-note p {
+      margin: 0;
+      text-align: center;
+      color: #7da4c0;
+      font-size: 0.89rem;
+    }
+
+    .publication-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .publication-links .button {
+      margin: 0;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .publication-links .button:hover {
+      background: rgba(30, 144, 255, 0.25) !important;
+      border-color: rgba(30, 144, 255, 0.5) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(30, 144, 255, 0.2);
+    }
+
+    .publication-links .button span {
+      display: block;
+      line-height: 1.2;
+    }
+
+    .hero.publication-header {
+      padding: 3rem 1.5rem 4rem;
+      text-align: center;
+    }
+
+    .hero.publication-header .hero-body {
+      padding: 0;
+    }
+
+    .publication-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0.5rem 0 0.3rem;
+      line-height: 1.1;
+    }
+
+    .publication-subtitle {
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin: 0 0 1.5rem;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .brand-logo-wrap {
+      display: inline-block;
+    }
+
+    .brand-logo {
+      width: 100%;
+      height: auto;
+      max-width: 120px;
+    }
+
+    .brand-name {
+      font-size: 1.08rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      margin: 0.1rem 0 0.3rem;
+    }
+
+    .section-title {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .container.is-max-desktop {
+      max-width: 800px;
+    }
+
+    @media (max-width: 768px) {
+      .publication-title {
+        font-size: 2rem;
+      }
+
+      .publication-subtitle {
+        font-size: 1rem;
+      }
+
+      .publication-links {
+        gap: 0.5rem;
+      }
+
+      .publication-links .button {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="navbar-placeholder"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<section class="hero publication-header">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <figure class="brand-logo-wrap" style="width: 124px; margin: 0.1rem auto 0.3rem;">
+        <img src="static/images/nexora.png" alt="Nexora group logo" class="brand-logo" style="width: 100%; height: auto; display: block;">
+      </figure>
+      <p class="brand-name" style="font-size: 1.08rem; font-weight: 900; letter-spacing: 0.18em;">NEXORA</p>
+      <h1 class="title is-1 publication-title">System Architecture Documentation</h1>
+      <h2 class="subtitle is-4 publication-subtitle">Overview of the overall system architecture, including major components, data flow, and infrastructure decisions.</h2>
+
+      
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content-card">
+      <h2 class="title is-3 section-title">Architecture Overview</h2>
+      <p>
+        This section outlines the overall system architecture, including major components, data flow, and infrastructure decisions behind the Barangay Certificate Request System.
+      </p>
+
+      <hr>
+
+      <h3 class="title is-4">Architecture Diagram</h3>
+      <pre>
++---------------------+          HTTPS/API         +----------------------+
+|  Web/Mobile Client  |  <---------------------->  |   Web Application    |
+| (Residents/Admin)   |                           |  (Frontend + Backend) |
++---------------------+                           +----------+-----------+
+                                                             |
+                                                             | SQL / ORM
+                                                             v
+                                                +--------------------------+
+                                                |   Database Server        |
+                                                | (Barangay Records DB)    |
+                                                +--------------------------+
+                                                             ^
+                                                             |
+                                                +--------------------------+
+                                                |  Admin Dashboard Module  |
+                                                | (Certificate Processing) |
+                                                +--------------------------+
+      </pre>
+
+      <h3 class="title is-4">System Components</h3>
+      <ul>
+        <li><strong>Web/Mobile Client</strong> – Interface for residents and administrators to submit and manage certificate requests.</li>
+        <li><strong>Web Application</strong> – Handles business logic, validation, and request processing between client and database.</li>
+        <li><strong>Database Server</strong> – Stores resident records, certificate requests, and transaction history.</li>
+        <li><strong>Admin Dashboard Module</strong> – Used by barangay staff for approving, rejecting, and generating certificates.</li>
+      </ul>
+
+      <h3 class="title is-4">Data Flow Between Systems</h3>
+      <ol>
+        <li>Resident submits certificate request via the client interface.</li>
+        <li>System validates input and forwards data to the database.</li>
+        <li>Admin retrieves and reviews pending requests.</li>
+        <li>Admin approves or rejects the request.</li>
+        <li>System updates request status in the database.</li>
+        <li>Approved requests generate downloadable/printable certificates.</li>
+        <li>User receives status update via the system interface.</li>
+      </ol>
+      <br>
+
+      <h3 class="title is-4">Scalability Considerations</h3>
+      <ul>
+        <li>Modular architecture allows independent scaling of frontend, backend, and database.</li>
+        <li>Database indexing improves performance for large datasets.</li>
+        <li>Load balancing can support multiple concurrent users.</li>
+        <li>Caching can reduce database load and improve response time.</li>
+      </ul>
+      <br>
+
+      <h3 class="title is-4">Security Considerations</h3>
+      <ul>
+        <li>Role-based access control for residents and administrators.</li>
+        <li>HTTPS encryption for secure communication.</li>
+        <li>Input validation to prevent SQL injection and attacks.</li>
+        <li>Password hashing for secure credential storage.</li>
+        <li>Audit logs for tracking system activity.</li>
+      </ul>
+      <br>
+
+      <h3 class="title is-4">Limitations</h3>
+      <ul>
+        <li>Requires stable internet connection to function.</li>
+        <li>Database may become a bottleneck under heavy traffic.</li>
+        <li>Limited real-time notification capability without external services.</li>
+        <li>Manual approval process may introduce delays.</li>
+        <li>Scaling infrastructure may increase operational cost.</li>
+      </ul>
+      <br>
+
+    </div>
+  </div>
+</section>
+
+<section class="section footer-note">
+  <div class="container is-max-desktop">
+    <p>
+      Page foundation inspired by the Nerfies project website template, customized for our Final Project Team Website.
+    </p>
+  </div>
+</section>
+<script>
+    // Fetch the navigation bar and insert it into the placeholder
+    fetch('nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        
+        // Initialize the burger menu AFTER the nav bar has loaded
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        $navbarBurgers.forEach( el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+            
+            if ($target.classList.contains('is-active')) {
+              $target.style.background = '#0a1c33';
+            } else {
+              $target.style.background = 'transparent';
+            }
+          });
+        });
+      })
+      .catch(error => console.error('Error loading navigation:', error));
+  </script>
+</body>
+</body>
+</html>

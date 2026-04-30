@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>API Documentation - Barangay Certificate Request System</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <style>
+    /* Eye-friendly dark theme using #1E90FF as accent */
+    body {
+      color: #d9eaff !important;
+      background:
+        radial-gradient(900px 420px at 10% -8%, rgba(30, 144, 255, 0.22), transparent 65%),
+        radial-gradient(760px 360px at 92% -8%, rgba(30, 144, 255, 0.16), transparent 68%),
+        linear-gradient(165deg, #050c18 0%, #07152a 55%, #0a1c33 100%) !important;
+    }
+
+    .noise-overlay,
+    .bg-grid {
+      opacity: 0.18 !important;
+      background-image:
+        linear-gradient(to right, rgba(30, 144, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 144, 255, 0.07) 1px, transparent 1px) !important;
+    }
+
+    .publication-title,
+    .section-title,
+    .brand-name,
+    .panel-kicker,
+    .member-role,
+    .label-chip {
+      color: #1E90FF !important;
+    }
+
+    .publication-subtitle,
+    .group-label,
+    .update-card h3,
+    .update-card p,
+    .member-card h3,
+    .member-card p,
+    .content-card p,
+    .footer-note p,
+    .author-block a {
+      color: #d9eaff !important;
+    }
+
+    .label-chip,
+    .action-btn,
+    .actor-chips span,
+    .state-pill,
+    .publication-links .button {
+      color: #dff0ff !important;
+      border-color: rgba(30, 144, 255, 0.36) !important;
+      background: rgba(30, 144, 255, 0.14) !important;
+    }
+
+    .label-chip {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: auto !important;
+      max-width: fit-content;
+      padding: 0.45rem 1.2rem !important;
+      border: 1px solid rgba(30, 144, 255, 0.35) !important;
+      border-radius: 999px !important;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      box-shadow: 0 4px 12px rgba(30, 144, 255, 0.1);
+      margin: 0 auto 0.8rem !important;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #050c18 !important;
+    }
+
+    .brand-logo-wrap {
+      margin: 0 auto 0.3rem;
+    }
+
+    .publication-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .publication-links-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .publication-links-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem 0.75rem;
+      color: #8bd3ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 144, 255, 0.26);
+      background: rgba(30, 144, 255, 0.08);
+    }
+
+    .hero-shell,
+    .content-card,
+    .panel-card,
+    .member-card,
+    .update-card,
+    .diagram-box,
+    .box {
+      border-color: rgba(30, 144, 255, 0.24) !important;
+      background: linear-gradient(160deg, #0b203a, #0a1a31) !important;
+      box-shadow: 0 12px 28px rgba(3, 10, 24, 0.5) !important;
+      border-radius: 18px !important;
+      overflow: hidden !important;
+      background-clip: padding-box;
+    }
+
+    .panel-card {
+      padding: 1.2rem 1.3rem !important;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .content-card {
+      padding: 1.8rem 2rem !important;
+    }
+
+    .content-card .title.is-5 {
+      color: #9ed4ff !important;
+      font-weight: 700 !important;
+    }
+
+    .content-card .table-container {
+      overflow-x: auto;
+      margin-bottom: 1.2rem;
+      background: rgba(255, 255, 255, 0.02) !important;
+      border: 1px solid rgba(30, 144, 255, 0.14) !important;
+      border-radius: 18px !important;
+      padding: 0.5rem !important;
+    }
+
+    .content-card table.table {
+      background: transparent !important;
+      border-collapse: separate !important;
+      border-spacing: 0 !important;
+      color: #d9eaff !important;
+    }
+
+    .content-card table.table th,
+    .content-card table.table td {
+      background: transparent !important;
+      color: #d9eaff !important;
+      border-color: rgba(30, 144, 255, 0.18) !important;
+    }
+
+    .content-card table.table thead tr {
+      background: rgba(30, 144, 255, 0.05) !important;
+    }
+
+    .content-card table.table thead th {
+      background: transparent !important;
+      color: #d9eaff !important;
+      border-bottom-color: rgba(30, 144, 255, 0.25) !important;
+    }
+
+    .content-card table.table tbody tr {
+      background: transparent !important;
+    }
+
+    .content-card table.table.is-striped tbody tr:nth-child(odd) {
+      background: rgba(255, 255, 255, 0.02) !important;
+    }
+
+    .content-card table.table.is-striped tbody tr:nth-child(even) {
+      background: transparent !important;
+    }
+
+    .content-card table.table tbody tr:hover,
+    .content-card table.table.is-hoverable tbody tr:hover {
+      background: rgba(30, 144, 255, 0.12) !important;
+    }
+
+    .content-card table.table tbody tr:hover td,
+    .content-card table.table tbody tr:hover th {
+      background: transparent !important;
+      color: #d9eaff !important;
+    }
+
+    .content-card pre,
+    .content-card code {
+      background: rgba(30, 144, 255, 0.08) !important;
+      color: #d9eaff !important;
+      border: 1px solid rgba(30, 144, 255, 0.16) !important;
+      border-radius: 14px !important;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace !important;
+    }
+
+    .content-card pre {
+      padding: 1rem !important;
+      overflow-x: auto !important;
+      line-height: 1.6 !important;
+      margin-bottom: 1rem !important;
+    }
+
+    .content-card code {
+      padding: 0.18rem 0.4rem !important;
+      font-size: 0.95rem !important;
+    }
+
+    .member-card {
+      padding: 1rem;
+    }
+
+    .member-featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .member-photo-wrap {
+      margin: 0;
+    }
+
+    .member-photo {
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 2px solid #3b84b9;
+    }
+
+    .member-card h3 {
+      margin: 0;
+      color: #e9f9ff;
+      font-size: 1rem;
+    }
+
+    .member-role {
+      margin: 0.32rem 0 0.36rem;
+      color: #68dbff;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .member-card p {
+      margin: 0;
+      color: #a2c6de;
+      font-size: 0.89rem;
+    }
+
+    .footer-note {
+      padding-top: 1.25rem;
+      padding-bottom: 2.4rem;
+    }
+
+    .footer-note p {
+      margin: 0;
+      text-align: center;
+      color: #7da4c0;
+      font-size: 0.89rem;
+    }
+
+    .publication-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .publication-links .button {
+      margin: 0;
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .publication-links .button:hover {
+      background: rgba(30, 144, 255, 0.18) !important;
+      border-color: rgba(30, 144, 255, 0.35) !important;
+      transform: none;
+      box-shadow: 0 4px 12px rgba(30, 144, 255, 0.12);
+    }
+
+    .publication-links .button span {
+      display: block;
+      line-height: 1.2;
+    }
+
+    .hero.publication-header {
+      padding: 3rem 1.5rem 4rem;
+      text-align: center;
+    }
+
+    .hero.publication-header .hero-body {
+      padding: 0;
+    }
+
+    .publication-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0.5rem 0 0.3rem;
+      line-height: 1.1;
+    }
+
+    .publication-subtitle {
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin: 0 0 1.5rem;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .brand-logo-wrap {
+      display: inline-block;
+    }
+
+    .brand-logo {
+      width: 100%;
+      height: auto;
+      max-width: 120px;
+    }
+
+    .brand-name {
+      font-size: 1.08rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      margin: 0.1rem 0 0.3rem;
+    }
+
+    .section-title {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .container.is-max-desktop {
+      max-width: 800px;
+    }
+
+    @media (max-width: 768px) {
+      .publication-title {
+        font-size: 2rem;
+      }
+
+      .publication-subtitle {
+        font-size: 1rem;
+      }
+
+      .publication-links {
+        gap: 0.5rem;
+      }
+
+      .publication-links .button {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="navbar-placeholder"></div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<section class="hero publication-header">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <figure class="brand-logo-wrap" style="width: 124px; margin: 0.1rem auto 0.3rem;">
+        <img src="static/images/nexora.png" alt="Nexora group logo" class="brand-logo" style="width: 100%; height: auto; display: block;">
+      </figure>
+      <p class="brand-name" style="font-size: 1.08rem; font-weight: 900; letter-spacing: 0.18em;">NEXORA</p>
+      <h1 class="title is-1 publication-title">API Documentation</h1>
+      <h2 class="subtitle is-4 publication-subtitle">Reference for application endpoints, request/response formats, authentication, and usage examples.</h2>
+
+     
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content-card">
+      <h2 class="title is-3 section-title">API Overview</h2>
+      <p>The API allows the system to manage barangay-related services such as resident registration, certificate requests, incident/blotter reports, and community event registration.</p>
+
+      <h3 class="title is-5">Base URL</h3>
+      <p><code>http://localhost/api</code></p>
+
+      <h3 class="title is-5">Authentication</h3>
+      <p>If login is implemented, users must include a token when accessing protected endpoints.</p>
+      <pre><code>Authorization: Bearer {token}</code></pre>
+
+      <h3 class="title is-5">API Endpoints</h3>
+      <div class="table-container">
+        <table class="table is-fullwidth is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint</th>
+              <th>Description</th>
+              <th>Controller</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="label-chip">GET</span></td>
+              <td><code>/certificates</code></td>
+              <td>Get all certificate requests</td>
+              <td>CertificateController@index</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">POST</span></td>
+              <td><code>/certificates</code></td>
+              <td>Submit a new certificate request</td>
+              <td>CertificateController@store</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">PUT</span></td>
+              <td><code>/certificates/{id}/approve</code></td>
+              <td>Approve a certificate request</td>
+              <td>CertificateController@approve</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">GET</span></td>
+              <td><code>/events</code></td>
+              <td>Get all community events</td>
+              <td>EventController@index</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">POST</span></td>
+              <td><code>/events/register</code></td>
+              <td>Register for a community event</td>
+              <td>EventController@register</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">GET</span></td>
+              <td><code>/incidents</code></td>
+              <td>Get all incident/blotter reports</td>
+              <td>IncidentController@index</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">POST</span></td>
+              <td><code>/incidents</code></td>
+              <td>Submit a new incident/blotter report</td>
+              <td>IncidentController@store</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">POST</span></td>
+              <td><code>/login</code></td>
+              <td>User login authentication</td>
+              <td>AuthController@login</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">POST</span></td>
+              <td><code>/register</code></td>
+              <td>Register a new user/resident</td>
+              <td>AuthController@register</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">GET</span></td>
+              <td><code>/residents</code></td>
+              <td>Get all resident records</td>
+              <td>ResidentController@index</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">GET</span></td>
+              <td><code>/residents/{id}</code></td>
+              <td>Get a specific resident's details</td>
+              <td>ResidentController@show</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="title is-5">Sample Request Body</h3>
+      <h4 class="title is-5">User Login</h4>
+      <pre><code>{
+  "email": "resident@example.com",
+  "password": "secure_password"
+}</code></pre>
+      <h4 class="title is-5">User Registration</h4>
+      <pre><code>{
+  "first_name": "Juan",
+  "last_name": "Dela Cruz",
+  "email": "resident@example.com",
+  "password": "secure_password",
+  "birthdate": "2002-05-14",
+  "address": "Barangay San Isidro",
+  "contact_number": "09123456789"
+}</code></pre>
+      <h4 class="title is-5">Certificate Request</h4>
+      <pre><code>{
+  "resident_id": 1,
+  "certificate_type": "Barangay Clearance",
+  "purpose": "Employment"
+}</code></pre>
+      <h4 class="title is-5">Incident/Blotter Report</h4>
+      <pre><code>{
+  "resident_id": 1,
+  "incident_type": "Noise Complaint",
+  "description": "Loud music during late hours",
+  "location": "Purok 2",
+  "date_time": "2024-04-30 22:30:00"
+}</code></pre>
+      <h4 class="title is-5">Event Registration</h4>
+      <pre><code>{
+  "resident_id": 1,
+  "event_id": 1
+}</code></pre>
+
+      <h3 class="title is-5">Sample Response Format</h3>
+      <pre><code>{
+  "success": true,
+  "message": "Request submitted successfully",
+  "data": {
+    "id": 1,
+    "status": "Pending"
+  }
+}</code></pre>
+
+      <h3 class="title is-5">Error Codes</h3>
+      <div class="table-container">
+        <table class="table is-fullwidth is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>200</td>
+              <td>Request successful</td>
+            </tr>
+            <tr>
+              <td>201</td>
+              <td>Record created successfully</td>
+            </tr>
+            <tr>
+              <td>400</td>
+              <td>Invalid request</td>
+            </tr>
+            <tr>
+              <td>401</td>
+              <td>Unauthorized access</td>
+            </tr>
+            <tr>
+              <td>404</td>
+              <td>Record not found</td>
+            </tr>
+            <tr>
+              <td>422</td>
+              <td>Validation error</td>
+            </tr>
+            <tr>
+              <td>500</td>
+              <td>Server error</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section footer-note">
+  <div class="container is-max-desktop">
+    <p>
+      Page foundation inspired by the Nerfies project website template, customized for our Final Project Team Website.
+    </p>
+  </div>
+</section>
+<script>
+    // Fetch the navigation bar and insert it into the placeholder
+    fetch('nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        
+        // Initialize the burger menu AFTER the nav bar has loaded
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        $navbarBurgers.forEach( el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+            
+            if ($target.classList.contains('is-active')) {
+              $target.style.background = '#0a1c33';
+            } else {
+              $target.style.background = 'transparent';
+            }
+          });
+        });
+      })
+      .catch(error => console.error('Error loading navigation:', error));
+  </script>
+</body>
+</body>
+</html>
