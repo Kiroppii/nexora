@@ -423,61 +423,95 @@
         <table class="table is-fullwidth is-striped is-hoverable">
           <thead>
             <tr>
-              <th>Endpoint</th>
               <th>Method</th>
+              <th>Endpoint</th>
               <th>Description</th>
+              <th>Controller</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><code>/residents</code></td>
-              <td>POST</td>
-              <td>Register a new resident</td>
-            </tr>
-            <tr>
-              <td><code>/residents</code></td>
-              <td>GET</td>
-              <td>View resident records</td>
-            </tr>
-            <tr>
+              <td><span class="label-chip">GET</span></td>
               <td><code>/certificates</code></td>
-              <td>POST</td>
-              <td>Submit a certificate request</td>
+              <td>Get all certificate requests</td>
+              <td>CertificateController@index</td>
             </tr>
             <tr>
-              <td><code>/certificates/{id}</code></td>
-              <td>GET</td>
-              <td>View certificate request status</td>
+              <td><span class="label-chip">POST</span></td>
+              <td><code>/certificates</code></td>
+              <td>Submit a new certificate request</td>
+              <td>CertificateController@store</td>
             </tr>
             <tr>
-              <td><code>/incidents</code></td>
-              <td>POST</td>
-              <td>Submit an incident or blotter report</td>
+              <td><span class="label-chip">PUT</span></td>
+              <td><code>/certificates/{id}/approve</code></td>
+              <td>Approve a certificate request</td>
+              <td>CertificateController@approve</td>
             </tr>
             <tr>
-              <td><code>/incidents</code></td>
-              <td>GET</td>
-              <td>View incident reports</td>
-            </tr>
-            <tr>
+              <td><span class="label-chip">GET</span></td>
               <td><code>/events</code></td>
-              <td>GET</td>
-              <td>View available community events</td>
+              <td>Get all community events</td>
+              <td>EventController@index</td>
             </tr>
             <tr>
+              <td><span class="label-chip">POST</span></td>
               <td><code>/events/register</code></td>
-              <td>POST</td>
               <td>Register for a community event</td>
+              <td>EventController@register</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">GET</span></td>
+              <td><code>/incidents</code></td>
+              <td>Get all incident/blotter reports</td>
+              <td>IncidentController@index</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">POST</span></td>
+              <td><code>/incidents</code></td>
+              <td>Submit a new incident/blotter report</td>
+              <td>IncidentController@store</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">POST</span></td>
+              <td><code>/login</code></td>
+              <td>User login authentication</td>
+              <td>AuthController@login</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">POST</span></td>
+              <td><code>/register</code></td>
+              <td>Register a new user/resident</td>
+              <td>AuthController@register</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">GET</span></td>
+              <td><code>/residents</code></td>
+              <td>Get all resident records</td>
+              <td>ResidentController@index</td>
+            </tr>
+            <tr>
+              <td><span class="label-chip">GET</span></td>
+              <td><code>/residents/{id}</code></td>
+              <td>Get a specific resident's details</td>
+              <td>ResidentController@show</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <h3 class="title is-5">Sample Request Body</h3>
-      <h4 class="title is-5">Resident Registration</h4>
+      <h4 class="title is-5">User Login</h4>
+      <pre><code>{
+  "email": "resident@example.com",
+  "password": "secure_password"
+}</code></pre>
+      <h4 class="title is-5">User Registration</h4>
       <pre><code>{
   "first_name": "Juan",
   "last_name": "Dela Cruz",
+  "email": "resident@example.com",
+  "password": "secure_password",
   "birthdate": "2002-05-14",
   "address": "Barangay San Isidro",
   "contact_number": "09123456789"
@@ -488,12 +522,18 @@
   "certificate_type": "Barangay Clearance",
   "purpose": "Employment"
 }</code></pre>
-      <h4 class="title is-5">Incident Report</h4>
+      <h4 class="title is-5">Incident/Blotter Report</h4>
       <pre><code>{
   "resident_id": 1,
   "incident_type": "Noise Complaint",
   "description": "Loud music during late hours",
-  "location": "Purok 2"
+  "location": "Purok 2",
+  "date_time": "2024-04-30 22:30:00"
+}</code></pre>
+      <h4 class="title is-5">Event Registration</h4>
+      <pre><code>{
+  "resident_id": 1,
+  "event_id": 1
 }</code></pre>
 
       <h3 class="title is-5">Sample Response Format</h3>
